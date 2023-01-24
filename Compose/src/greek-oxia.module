@@ -1,4 +1,4 @@
-#configinfo Oxia statt oxia für griechisch
+#configinfo Oxia statt Tonos für griechisch
 
 <dead_acute> <Multi_key> <g> <A>                                        : "Ά"   U1FBB # GREEK CAPITAL LETTER ALPHA WITH OXIA
 <dead_acute> <Multi_key> <G> <A>                                        : "Ά"   U1FBB # GREEK CAPITAL LETTER ALPHA WITH OXIA
