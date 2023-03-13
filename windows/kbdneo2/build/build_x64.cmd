@@ -24,4 +24,9 @@ IF NOT EXIST x64 mkdir x64
 call ..\..\build\build_variant_x64.cmd mine
 cd ..
 
+cd kbdkoy
+IF NOT EXIST x64 mkdir x64
+call ..\..\build\build_variant_x64.cmd koy
+cd ..
+
 popd

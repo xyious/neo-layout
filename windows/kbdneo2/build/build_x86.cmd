@@ -32,4 +32,11 @@ call ..\..\build\build_variant_x86.cmd mine
 call ..\..\build\build_variant_x86_wow64.cmd mine
 cd ..
 
+cd kbdkoy
+IF NOT EXIST x86 mkdir x86
+IF NOT EXIST x86-wow64 mkdir x86-wow64
+call ..\..\build\build_variant_x86.cmd koy
+call ..\..\build\build_variant_x86_wow64.cmd koy
+cd ..
+
 popd
