@@ -1,7 +1,7 @@
 @echo off
 
 if "%1"=="" (
-	ECHO Dieses Skript ist nur zur internen Verwendung von build_x86 gedacht.
+	ECHO Dieses Skript ist nur zur internen Verwendung von build_layout gedacht.
 	EXIT /B
 )
 

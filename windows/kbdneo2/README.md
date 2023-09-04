@@ -4,7 +4,7 @@ Für die weitergehende Entwicklung und Kompilierung der Treiberlayout-DLLs unter
 1. Über Visual Studio
 2. Über ein manuelles Buildskript
 
-Die erste Variante ist einfacher und dient auch der Entwicklung. Die zweite Variante benötigt kein Visual Studio und insbesondere kein Windows Driver Kit.
+Die erste Variante ist der kanonische Weg. Die zweite Variante benötigt kein Visual Studio und insbesondere kein umfangreiches Windows Driver Kit. Sie kann für eigene Anpassungen an den Layoutdateien verwendet werden.
 
 
 ## Regulärer Build mit Visual Studio
@@ -36,28 +36,24 @@ Für jedes der enthaltenen Tastaturlayouts sind nun je zwei .dll-Dateien (Name =
 
 ### Voraussetzungen
 
-* Visual Studio Build Tools: Auf https://visualstudio.microsoft.com/de/downloads/ nach unten scrollen, unter „Alle Downloads“ den Reiter „Tools für Visual Studio 2019“ aufklappen und „Buildtools für Visual Studio 2019“ auswählen.
+* Visual Studio Build Tools: Auf https://visualstudio.microsoft.com/de/downloads/ nach unten scrollen, unter „Alle Downloads“ den Reiter „Tools für Visual Studio“ aufklappen und „Buildtools für Visual Studio 2022“ auswählen.
 * Im Installer unter „Workloads“ die C++-Buildtools auswählen – oder alternativ unter „Einzelne Komponenten“ die aktuellen x64/x86-Buildtools sowie das aktuelle Windows 10 SDK auswählen.
+
+Ältere, bereits installierte Buildtools funktionieren gleichermaßen. Dazu muss man vor dem Build einmalig die Variable `buildtools` in den Skripten umstellen auf die entsprechende Version (Jahreszahl).
 
 ### Build
 
-Nach der Installation stehen im Startmenü im Ordner Visual Studio 2019 verschiedene Command Prompts zur Verfügung. Das Vorgehen ist wie folgt:
+Nach der Installation können einzelne oder alle Layouts über die im `build`-Verzeichnis verfügbaren Skripte gebaut werden.
 
-* x86_x64 Cross Tools Command Prompt for VS 2019 starten
-* ins `build`-Verzeichnis unterhalb von kbdneo wechseln
-* `build_x64` ausführen
-
-Dies baut die x64-Varianten der DLLs. Für die x86-Varianten (für 32 Bit bzw. SysWOW64) lautet es:
-* x86 Native Tools Command Prompt for VS 2019 starten
-* ins `build`-Verzeichnis unterhalb von kbdneo wechseln
-* `build_x86` ausführen
+* ins `build`-Verzeichnis unterhalb von `windows\kbdneo2` wechseln
+* `build_all` ausführen, oder alternativ `build_layout [Layoutname]`, wobei hier der Layoutname ohne "kbd" angegeben wird (z.B. neo2 oder bone), wie er im `source`-Verzeichnis verwendet wird.
 
 Die erzeugten DLLs sind anschließend in den Unterverzeichnissen `x64`, `x86` und `x86-wow64` der jeweiligen Layoutvarianten zu finden.
 
 
 ## kbdqwertz mit „ß“ unten
 
-Von kbdqwertz (aus historischen Gründen in kbdgr2 platziert) gibt es zwei Varianten, einmal mit dem regulären QWERTZ-Layout mit ß oben und dem Bindestrich unten. Die zweite Variante tauscht beides, sodass der Bindestrich gemeinsam mit anderen Strichen auf weiteren Ebenen auf der Strichtaste landet. Das „ß“ verschiebt sich dafür ins Hauptfeld.
+Von kbdqwertz (aus historischen Gründen im Verzeichnis `kbdgr2` platziert) gibt es zwei Varianten, einmal mit dem regulären QWERTZ-Layout mit ß oben und dem Bindestrich unten. Die zweite Variante tauscht beides, sodass der Bindestrich gemeinsam mit anderen Strichen auf weiteren Ebenen auf der Strichtaste landet. Das „ß“ verschiebt sich dafür ins Hauptfeld.
 
 Um kbdqwertz mit „ß“ unten zu kompilieren, muss in `kbdgr2.h` folgende Zeile einkommentiert werden:
 ```
