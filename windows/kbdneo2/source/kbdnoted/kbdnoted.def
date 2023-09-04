@@ -1,0 +1,4 @@
+LIBRARY KBDNOTED
+
+EXPORTS
+    KbdLayerDescriptor @1
