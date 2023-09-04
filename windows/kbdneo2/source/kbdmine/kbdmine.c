@@ -274,7 +274,7 @@ static ALLOC_SECTION_LDATA VK_TO_WCHARS6 aVkToWch6[] = {
 {'B'			,CAPLOK | KANALOK	,'b'		,'B'					,'<'					,'7'			,Greek_beta			,doublearrowleft	},
 {'D'			,CAPLOK | KANALOK	,'d'		,'D'					,'>'					,'8'			,Greek_delta		,Greek_DELTA		},
 {'G'			,CAPLOK | KANALOK	,'g'		,'G'					,'='					,'9'			,Greek_gamma		,Greek_GAMMA		},
-{'Z'			,CAPLOK | KANALOK	,'z'		,'Z'					,'@'					,'.'			,Greek_zeta			,doublestruck_z		},
+{'Z'			,CAPLOK | KANALOK	,'z'		,'Z'					,'@'					,minussign		,Greek_zeta			,doublestruck_z		},
 {'C'			,CAPLOK | KANALOK	,'c'		,'C'					,backslash				,WCH_NONE		,Greek_chi			,doublestruck_c		},
 {'R'			,CAPLOK | KANALOK	,'r'		,'R'					,'/'					,WCH_NONE		,Greek_rho			,doublestruck_r		},
 {'I'			,CAPLOK | KANALOK	,'i'		,'I'					,'{'					,WCH_NONE		,Greek_iota			,integral			},
@@ -294,14 +294,14 @@ static ALLOC_SECTION_LDATA VK_TO_WCHARS6 aVkToWch6[] = {
 {'F'			,CAPLOK | KANALOK	,'f'		,'F'					,'%'					,'1'			,Greek_phi			,Greek_PHI			},
 {VK_OEM_COMMA	,KANALOK			,','		,endash					,quotedbl				,'2'			,scriptrho			,implies			},
 {VK_OEM_PERIOD	,KANALOK			,'.'		,enfilledcircbullet		,apostrophe				,'3'			,scripttheta		,arrowfrombarright	},
-{'K'			,CAPLOK | KANALOK	,'k'		,'K'					,';'					,';'			,Greek_kappa		,multiply			},
+{'K'			,CAPLOK | KANALOK	,'k'		,'K'					,';'					,'.'			,Greek_kappa		,multiply			},
 {0				,0					,0			,0						,0						,0				,0					,0					}
 };	
 
 static ALLOC_SECTION_LDATA VK_TO_WCHARS7 aVkToWch7[] = {
 //				| CapsLock			|			| SHIFT		| NEU		| KANA		|	 NEU+Shift			| KANA+NEU		| Control		|
 //				|===================|===========|===========|===========|===========|=======================|===============|===============|
-{VK_OEM_3 /*ß*/ ,CAPLOK | KANALOK	,ssharp		,Ssharp		,slong		,minussign	,Greek_finalsmallsigma	,jot			,escape			},
+{VK_OEM_3 /*ß*/ ,CAPLOK | KANALOK	,ssharp		,Ssharp		,slong		,';'    	,Greek_finalsmallsigma	,jot			,escape			},
 {VK_OEM_4		,0					,WCH_DEAD	,WCH_DEAD	,WCH_DEAD	,WCH_DEAD	,WCH_DEAD				,WCH_DEAD		,infoseparator3	},	//Tote Taste 3
 {0xff			,0					,acute		,'~'		,'-'		,doubleacute,greek_psili			,breve			,WCH_NONE		},
 {'Y'			,CAPLOK | KANALOK	,'y'		,'Y'		,'&'		,'+'		,Greek_upsilon			,nabla			,infoseparator4	},
@@ -354,9 +354,9 @@ static ALLOC_SECTION_LDATA VK_TO_WCHARS4 aVkToWch4[] = {
 // und Modifier zu finden. Die Numpad-Definition muss zum Schluss kommen, damit Zeichen
 // wie '0' als vom Hauptfeld kommend interpretiert werden, falls dort vorhanden.
 static ALLOC_SECTION_LDATA VK_TO_WCHAR_TABLE aVkToWcharTable[] = {
-    {  (PVK_TO_WCHARS1)aVkToWch6, 6, sizeof(aVkToWch6[0]) },
+    {  (PVK_TO_WCHARS1)aVkToWch6, 6, sizeof(aVkToWch8[0]) },
     {  (PVK_TO_WCHARS1)aVkToWch7, 7, sizeof(aVkToWch7[0]) },
-    {  (PVK_TO_WCHARS1)aVkToWch8, 8, sizeof(aVkToWch8[0]) },
+    {  (PVK_TO_WCHARS1)aVkToWch8, 8, sizeof(aVkToWch6[0]) },
     {  (PVK_TO_WCHARS1)aVkToWch4, 4, sizeof(aVkToWch4[0]) },
     {                       NULL, 0, 0                    },
 };
