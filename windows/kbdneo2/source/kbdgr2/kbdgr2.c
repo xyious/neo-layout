@@ -250,9 +250,6 @@ static ALLOC_SECTION_LDATA VK_TO_WCHARS6 aVkToWch6[] = {
 // Reihenfolge der Ebene wie oben ( ALLOC_SECTION_LDATA MODIFIERS CharModifiers = {    &aVkToBits[0],)… festgelegt
 //				| CapsLock			|			| SHIFT					| NEU					| KANA			| NEU+Shift			| KANA+NEU			|
 //				|===================|===========|=======================|=======================|===============|===================|===================|
-// Zeile 1
-{VK_OEM_1		,0					,WCH_DEAD	,WCH_DEAD				,WCH_DEAD				,WCH_DEAD		,WCH_DEAD			,WCH_DEAD			},	//Tote Taste 1
-{0xff			,0					,'^'		,caron					,totdreh				,abovedot		,rhotichook			,'.'				}, 
 {'1'			,KANALOK			,'1'		,degree					,onesuperior			,ordfeminine	,onesubscript		,notsign			},
 {'3'			,KANALOK			,'3'		,litersign				,threesuperior			,numerosign		,threesubscript		,logicaland			},
 {'4'			,KANALOK			,'4'		,guillemotright			,guillemotright2		,WCH_NONE		,femalesymbol		,uptack				},	
@@ -261,10 +258,17 @@ static ALLOC_SECTION_LDATA VK_TO_WCHARS6 aVkToWch6[] = {
 {'8'			,KANALOK			,'8'		,doublelowquotemark		,singlelowquotemark		,WCH_NONE		,leftanglebracket	,infinity			},	//Kana: '\t' vom AHK übernommen
 {'9'			,KANALOK			,'9'		,leftdoublequotemark	,leftsinglequotemark	,'/'			,rightanglebracket	,variation			},
 {'0'			,KANALOK			,'0'		,rightdoublequotemark	,rightsinglequotemark	,'*'			,zerosubscript		,emptyset			},
+#ifdef LOW_ESZETT
+{VK_OEM_MINUS	,KANALOK			,'-'		,emdash					,WCH_NONE				,'-'			,nobreakhyphen		,hyphen				},
+#else
+{VK_OEM_MINUS	,KANALOK			,'-'		,emdash					,';'    				,';'			,nobreakhyphen		,hyphen				},
+#endif
 {VK_OEM_2		,0					,WCH_DEAD	,WCH_DEAD				,WCH_DEAD				,WCH_DEAD		,WCH_DEAD			,WCH_DEAD			},	//Tote Taste 2
 {0xff			,0					,grave		,cedilla				,ringabove				,diaeresis		,greek_dasia		,macron				},
 {VK_TAB			,0					,'\t'		,'\t'					,WCH_DEAD				,'\t'			,'\t'				,'\t'				},
 {0xff			,0					,WCH_NONE	,WCH_NONE				,Multi_key				,WCH_NONE		,WCH_NONE			,WCH_NONE			},
+{VK_OEM_COMMA	,KANALOK			,','		,endash					,quotedbl				,'2'			,scriptrho			,implies			},
+{VK_OEM_PERIOD	,KANALOK			,'.'		,enfilledcircbullet		,apostrophe				,'3'			,scripttheta		,arrowfrombarright	},
 {'Q'			,CAPLOK | KANALOK	,'q'		,'Q'					,ellipsis				,WCH_NONE		,scriptphi			,doublestruck_q		},
 {'W'			,CAPLOK | KANALOK	,'w'		,'W'					,'_'					,WCH_NONE		,Greek_omega		,Greek_OMEGA		},	//WCH_NONE sollte »Seite runter« sein (AHK?)
 {'E'			,CAPLOK | KANALOK	,'e'		,'E'					,'['					,WCH_NONE		,Greek_epsilon		,thereexists		},	//WCH_NONE sollte »Pfeil rechts« sein (AHK?)
@@ -292,13 +296,8 @@ static ALLOC_SECTION_LDATA VK_TO_WCHARS6 aVkToWch6[] = {
 {'B'			,CAPLOK | KANALOK	,'b'		,'B'					,'`'					,WCH_NONE		,Greek_beta			,doublearrowleft	},
 {'N'			,CAPLOK | KANALOK	,'n'		,'N'					,'+'					,':'			,Greek_nu			,doublestruck_n		},
 {'M'			,CAPLOK | KANALOK	,'m'		,'M'					,'%'					,'1'			,Greek_mu			,ifonlyif			},
-{VK_OEM_COMMA	,KANALOK			,','		,endash					,quotedbl				,'2'			,scriptrho			,implies			},
-{VK_OEM_PERIOD	,KANALOK			,'.'		,enfilledcircbullet		,apostrophe				,'3'			,scripttheta		,arrowfrombarright	},
-#ifdef LOW_ESZETT
-{VK_OEM_MINUS	,KANALOK			,'-'		,emdash					,WCH_NONE				,'-'			,nobreakhyphen		,hyphen				},
-#else
-{VK_OEM_MINUS	,KANALOK			,'-'		,emdash					,';'    				,';'			,nobreakhyphen		,hyphen				},
-#endif
+{VK_OEM_1		,0					,WCH_DEAD	,WCH_DEAD				,WCH_DEAD				,WCH_DEAD		,WCH_DEAD			,WCH_DEAD			},	//Tote Taste 1
+{0xff			,0					,'^'		,caron					,totdreh				,abovedot		,rhotichook			,'.'				}, 
 {0				,0					,0			,0						,0						,0				,0					,0			}
 };	
 
@@ -326,6 +325,15 @@ static ALLOC_SECTION_LDATA VK_TO_WCHARS8 aVkToWch8[] = {
 //				|===================|===========|===========|===========|===========|===================|===========|===========|===============|
 {'2'			,KANALOK			,'2'		,section	,twosuperior,masculine	,twosubscript		,logicalor	,WCH_NONE	,0x0000			},
 {'6'			,KANALOK			,'6'		,dollar		,cent		,sterling	,maleandfemalesign	,parallelto	,WCH_NONE	,infoseparator2	},
+{0				,0					,0			,0			,0			,0			,0				,0			,0			,0			}
+};
+
+// Die Aufteilung ist notwendig, damit diese Tabelle erst am Schluss integeriert wird.
+// Anderenfalls würde VkKeyScan() bei der Abfrage der '4' den falschen Virtual Key zurückgeben,
+// nämlich diesen und nicht den mit der 4 auf der ersten Ebene.
+static ALLOC_SECTION_LDATA VK_TO_WCHARS8 aVkToWch82[] = {
+//				| CapsLock			|			| SHIFT		| NEU		| KANA		| NEU+Shift			| KANA+NEU	| Control	| Control+Shift	|
+//				|===================|===========|===========|===========|===========|===================|===========|===========|===============|
 {'J'			,CAPLOK | KANALOK	,'j'		,'J'		,'('		,'4'		,Greek_theta		,Greek_THETA,WCH_NONE	,infoseparator1	},
 {0				,0					,0			,0			,0			,0			,0				,0			,0			,0			}
 };
@@ -362,10 +370,11 @@ static ALLOC_SECTION_LDATA VK_TO_WCHARS4 aVkToWch4[] = {
 // und Modifier zu finden. Die Numpad-Definition muss zum Schluss kommen, damit Zeichen
 // wie '0' als vom Hauptfeld kommend interpretiert werden, falls dort vorhanden.
 static ALLOC_SECTION_LDATA VK_TO_WCHAR_TABLE aVkToWcharTable[] = {
-    {  (PVK_TO_WCHARS1)aVkToWch6, 6, sizeof(aVkToWch6[0]) },
-    {  (PVK_TO_WCHARS1)aVkToWch7, 7, sizeof(aVkToWch7[0]) },
-    {  (PVK_TO_WCHARS1)aVkToWch8, 8, sizeof(aVkToWch8[0]) },
-    {  (PVK_TO_WCHARS1)aVkToWch4, 4, sizeof(aVkToWch4[0]) },
+    {  (PVK_TO_WCHARS1)aVkToWch8,  8, sizeof(aVkToWch8[0]) },
+    {  (PVK_TO_WCHARS1)aVkToWch6,  6, sizeof(aVkToWch6[0]) },
+    {  (PVK_TO_WCHARS1)aVkToWch7,  7, sizeof(aVkToWch7[0]) },
+    {  (PVK_TO_WCHARS1)aVkToWch82, 8, sizeof(aVkToWch82[0]) },
+    {  (PVK_TO_WCHARS1)aVkToWch4,  4, sizeof(aVkToWch4[0]) },
     {                       NULL, 0, 0                    },
 };
 
