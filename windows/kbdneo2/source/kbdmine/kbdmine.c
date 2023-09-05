@@ -354,9 +354,9 @@ static ALLOC_SECTION_LDATA VK_TO_WCHARS4 aVkToWch4[] = {
 // und Modifier zu finden. Die Numpad-Definition muss zum Schluss kommen, damit Zeichen
 // wie '0' als vom Hauptfeld kommend interpretiert werden, falls dort vorhanden.
 static ALLOC_SECTION_LDATA VK_TO_WCHAR_TABLE aVkToWcharTable[] = {
-    {  (PVK_TO_WCHARS1)aVkToWch6, 6, sizeof(aVkToWch8[0]) },
+    {  (PVK_TO_WCHARS1)aVkToWch6, 6, sizeof(aVkToWch6[0]) },
     {  (PVK_TO_WCHARS1)aVkToWch7, 7, sizeof(aVkToWch7[0]) },
-    {  (PVK_TO_WCHARS1)aVkToWch8, 8, sizeof(aVkToWch6[0]) },
+    {  (PVK_TO_WCHARS1)aVkToWch8, 8, sizeof(aVkToWch8[0]) },
     {  (PVK_TO_WCHARS1)aVkToWch4, 4, sizeof(aVkToWch4[0]) },
     {                       NULL, 0, 0                    },
 };
