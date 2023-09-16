@@ -1,4 +1,4 @@
-#!/usr/bin/env perl -w
+#!/usr/bin/env -S perl -w
 
 # Dieses Skript prüft übergebene Compose-Dateien auf 
 # Präfix-Eigenschaft und auf Code-Dopplungen
